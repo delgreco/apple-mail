@@ -6,14 +6,19 @@ on run argv
 
 	-- Get the HFS path of the directory containing this script
 	tell application "System Events"
-		set projectPath to path of (container of (path to me))
+		set scriptContainer to container of (path to me)
+		set projectPath to path of scriptContainer
 		set mailDir to projectPath & "mail:"
+
+		if not (exists folder mailDir) then
+			make new folder at scriptContainer with properties {name:"mail"}
+		end if
 		
 		-- Pre-load the list of existing files for efficiency
 		try
 			set existingFiles to name of every file in folder mailDir
 		on error
-			-- The directory might not exist yet on the first run, or might be empty
+			-- The directory might be empty
 			set existingFiles to {}
 		end try
 	end tell
