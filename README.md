@@ -9,7 +9,7 @@ Specifically, only Sent messages are fetched by this script.
 
 ## keep it fresh hourly
 
-    0 4-18 * * * cd $HOME/apple-mail; ./run_getmail.sh >> out.log
+    0 17 * * * cd $HOME/Desktop/projects/apple-mail; osascript get.scpt >> out.log
 
 ## result
 
