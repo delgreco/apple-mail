@@ -1,4 +1,5 @@
 # apple-mail
+
 Fetch email from Apple Mail and store it in plain text as JSON.
 
 Specifically, only Sent messages are fetched by this script.
@@ -7,13 +8,25 @@ Specifically, only Sent messages are fetched by this script.
 
     osascript get.scpt -v
 
-## keep it fresh hourly
+## keep it fresh every day at 5pm
 
-    0 17 * * * cd $HOME/Desktop/projects/apple-mail; osascript get.scpt >> out.log
+    0 17 * * * cd $HOME/apple-mail; ./run.sh >> out.log 2>&1
+
+Note that a wrapper script is used to run the Applescript.  This is to get normal shell output to the log, which Applescript is fussy about.
+
+Depending on the conditions Apple sets, cron execution may yield 'Operation Not Permitted' until you go to
+
+    System Settings -> Privacy & Security -> Full Disk Access
+
+and grant access to /bin/bash.  However, since you must select from the UI, use <cmd>-<shift>-G to open a dialog where you can type
+
+    /bin/bash
+
+to add it for Full Disk Access.
 
 ## result
 
-Mail will be stored in a local mail/ folder, in the following format:
+Your sent mail data will be stored in a local mail/ folder, in the following format:
 
     YYYYMMDD_HHMMSS_[message_id].json
 
