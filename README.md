@@ -24,6 +24,14 @@ and grant access to /bin/bash.  However, since you must select from the UI, use 
 
 to add it for Full Disk Access.
 
+Additionally, cron will not run on MacOS if the system is sleeping.  Go to
+
+    System Settings -> Battery -> Options
+
+and turn ON 
+
+    Prevent automatic sleeping on power adapter when the display is off
+
 ## result
 
 Your sent mail data will be stored in a local mail/ folder, in the following format:
